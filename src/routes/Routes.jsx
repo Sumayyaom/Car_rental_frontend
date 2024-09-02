@@ -13,6 +13,7 @@ import About from "../pages/user/About";
 import AddCar from "../pages/admin/AddCar";
 import DeleteCars from "../pages/admin/DeleteCars";
 import AdminLayout from "../layouts/AdminLayout";
+import { UserCheck } from "lucide-react";
 
 
 
@@ -35,7 +36,7 @@ export const router = createBrowserRouter([
             element: <Contact />
         },
         {
-            path: "Login",
+            path: "login",
             element: <Login />
         },
         {

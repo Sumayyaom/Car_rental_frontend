@@ -17,7 +17,9 @@ export default function Header() {
 
     <div className='flex items-center gap-8'>
         <Mode />
-        <button className="btn btn-primary">Register Now</button>
+        <Link to="/signup">
+          <button className="btn btn-primary">Register Now</button>
+        </Link>
     </div>
     </div>
   )
