@@ -1,11 +1,9 @@
-
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Mode from '../Mode';
 import { CircleUserRound } from 'lucide-react';
 
-export default function UserHeader() {
+export default function UserHeaders() {
   return (
     <header className='w-full px-4 py-4 bg-white shadow-xl'>
       <div className='container mx-auto flex flex-wrap items-center justify-between'>

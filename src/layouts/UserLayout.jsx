@@ -1,13 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from '../components/Footer';
-import UserHeader from '../components/user/userHeader';
-import Carousel from '../pages/user/HomeBanner';
+import UserHeaders from '../components/user/UserHeaders';
 
 export default function UserLayout() {
     return (
       <div>
-          <UserHeader />
+          <UserHeaders />
           {/* <Carousel /> */}
           <div className='min-h-96'>
             <Outlet />
