@@ -6,8 +6,8 @@ import { useParams } from 'react-router-dom';
 import { BookCar } from '../../services/userAPI';
 import CheckoutForm from '../../components/ui/CheckoutForm';
 import {loadStripe} from '@stripe/stripe-js';
-import { axiosInstance } from '../../config/axiosinstance';
 import { Elements } from '@stripe/react-stripe-js';
+import { axiosInstances } from '../../config/axiosInstances';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -77,14 +77,14 @@ export default function CarBook() {
       const response = await BookCar(bookingData);
       console.log('Booking successful:', response.data);
 
-      const paymentResponse = await axiosInstance.post('/payment/create-checkout-session', { totalPrice });
+      const paymentResponse = await axiosInstances.post('/payment/create-checkout-session', { totalPrice });
       setClientSecret(paymentResponse.data.clientSecret);
 
       toast.success('Booking confirmed! Proceed to payment.');
     } catch (error) {
       console.error('Error booking car or creating payment intent:', error);
       toast.error('Booking or payment failed. Please try again.');
-    }
+    }      
   };
 
   // Display a loading message while the car data is being fetched

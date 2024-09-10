@@ -1,9 +1,9 @@
 import toast from "react-hot-toast";
-import { axiosInstance } from "../config/axiosinstance";
+import { axiosInstances } from "../config/axiosInstances";
 
 export const ViewAllUsers = async() => {
     try{
-        const response = await axiosInstance({
+        const response = await axiosInstances({
           url: "/admin/viewuser",
           method: "GET",
           withCredentials: true

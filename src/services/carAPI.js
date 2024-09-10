@@ -1,5 +1,6 @@
 import toast from "react-hot-toast";
-import { axiosInstance } from "../config/axiosinstance";
+import { axiosInstances } from "../config/axiosInstances";
+
 
 export const ViewAllCars = async() => {
     try{
@@ -76,7 +77,7 @@ export const carDelete = async({ id }) =>{
   try {
     console.log("id==========>",{id});
     
-      const response = await axiosInstance({
+      const response = await axiosInstances({
           url: `/car/deletecar/${ id }`,
           method: "DELETE",
           withCredentials: true

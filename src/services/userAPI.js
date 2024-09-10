@@ -1,5 +1,5 @@
-import { axiosInstance } from "../config/axiosinstance";
 import toast from "react-hot-toast";
+import { axiosInstances } from "../config/axiosInstances";
 
 export const userLogin = async(data)=>{
     try {
@@ -76,7 +76,7 @@ export const Profile = async (req,res,next) => {
 
 export const Logout = async() => {
     try {
-        const response = await axiosInstance({
+        const response = await axiosInstances({
             url: "/user/logout",
             method: "POST",
             withCredentials: true
