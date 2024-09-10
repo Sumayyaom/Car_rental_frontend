@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { searchCar } from '../../services/carAPI';
-import Cards from '../../components/ui/cards';
+import Cards from '../../components/ui/Cards';
 
 export default function Search() {
   const [cars, setCars] = useState([]);
