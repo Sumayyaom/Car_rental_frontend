@@ -8,7 +8,7 @@ export default function UserLayout() {
     return (
       <div>
           <UserHeader />
-          <Carousel />
+          {/* <Carousel /> */}
           <div className='min-h-96'>
             <Outlet />
           </div>

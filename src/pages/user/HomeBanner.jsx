@@ -3,8 +3,8 @@ import React from 'react'
 export default function HomeBanner() {
   return (
     <div>
-        <div className="carousel w-full">
-  <div id="slide1" className="carousel-item relative w-full h-50px">
+        <div className="carousel w-full h-80">
+  <div id="slide1" className="carousel-item relative w-full">
     <img
       src="https://cdn.pixabay.com/photo/2019/08/08/23/33/car-4393990_1280.jpg"
       className="w-full" />

@@ -12,15 +12,14 @@ export default function AdminHeader() {
 
     <nav className='flex gap-10 font-semibold'>
         <Link to="/admin/home">Home</Link>
-        <Link to="/admin/addCar">AddCar</Link>
-        <Link to="/admin/viewCars">ViewCars</Link>
         <Link to="/admin/deleteCar/:id">DeleteCar</Link>
         <Link to="/admin/search">Search</Link>
     </nav>
 
     <div className='flex items-center gap-8'>
         <Mode />
-        <CircleUserRound />
+        <Link to="/admin/profile" className='text-gray-700 hover:text-blue-500'>
+        <CircleUserRound /></Link>
     </div>
     </div>
   )

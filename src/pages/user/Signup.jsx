@@ -19,8 +19,10 @@ export default function Signup() {
       console.log(data, "=======> data");
       const response = await userSignup(data)
       console.log(response);
+      toast.success('Registered successfully');
     }catch(error){
       console.log(error);
+      toast.error('User registration Failed');
     }
   }
 

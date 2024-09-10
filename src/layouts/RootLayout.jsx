@@ -9,7 +9,7 @@ export default function RootLayout() {
   return (
     <div>
         <Header />
-        <HomeBanner />
+        {/* <HomeBanner /> */}
         <div className='min-h-96'>
           <Outlet />
         </div>

@@ -6,14 +6,29 @@ import Login from "../pages/user/Login";
 import Signup from "../pages/user/Signup";
 import RootLayout from "../layouts/RootLayout";
 import UserLayout from "../layouts/UserLayout";
-import CarDetails from "../pages/user/carDetails";
-import Cars from "../pages/user/cars";
 import ErrorPage from "../pages/user/ErrorPage";
 import About from "../pages/user/About";
 import AddCar from "../pages/admin/AddCar";
 import DeleteCars from "../pages/admin/DeleteCars";
 import AdminLayout from "../layouts/AdminLayout";
 import { UserCheck } from "lucide-react";
+import UserProfile from "../pages/user/UserProfile";
+import EditProfile from "../pages/user/EditProfile";
+import CarDetails from "../pages/user/CarDetails";
+import Cars from "../pages/user/Cars";
+import CarBook from "../pages/user/CarBook";
+import SearchedCars from "../pages/user/SearchedCars";
+import AdminViewCar from "../pages/admin/AdminViewCar";
+import AdminCarDetails from "../pages/admin/AdminCarDetails";
+import ViewUsers from "../pages/admin/ViewUsers";
+import AdminProfile from "../pages/admin/AdminProfile";
+import AdminEdit from "../pages/admin/AdminEdit";
+import EditCar from "../pages/admin/EditCar";
+import ViewBookings from "../pages/admin/ViewBookings";
+import ViewPayments from "../pages/admin/ViewPayments";
+import Bookings from "../pages/user/Bookings";
+import AdminHome from "../pages/admin/AdminHome";
+import AdminSearchCar from "../pages/admin/AdminSearchCar";
 
 
 
@@ -67,8 +82,31 @@ export const router = createBrowserRouter([
                 element: <Cars />
             },
             {
+                path: 'bookcar/:id',
+                element: <CarBook />
+            },
+            {
+                path: 'profile',
+                element: <UserProfile />,
+                
+                children: [
+                    {
+                      path: 'editprofile', 
+                      element: <EditProfile />
+                    },
+                  ]
+            }, 
+            {
                 path: 'carDetails/:id',
                 element: <CarDetails />
+            },
+            {
+                path: 'searchedCars',
+                element: <SearchedCars />
+            },
+            {
+                path: 'bookings',
+                element: <Bookings />
             }
         ]
     },
@@ -79,7 +117,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: 'home',
-                element: <Home />
+                element: <AdminHome />
             },
             {
                 path: "addCar",
@@ -87,7 +125,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'viewCars',
-                element: <Cars />
+                element: <AdminViewCar />
             },
             {
                 path: 'deleteCar/:id',
@@ -95,7 +133,39 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'search',
-                element: <Search />
+                element: <AdminSearchCar />
+            },
+            {
+                path: 'carDetails/:id',
+                element: <AdminCarDetails />,
+                children: [
+                    {
+                        path: 'editCar/:id',
+                        element: <EditCar />
+                    }
+                ]
+            },
+            {
+                path: 'viewUsers',
+                element: <ViewUsers />
+            },
+            {
+                path: 'profile',
+                element: <AdminProfile /> ,
+                children: [
+                    {
+                      path: 'editprofile', 
+                      element: <AdminEdit />
+                    }
+                  ]
+            },
+            {
+                path: 'viewBookings',
+                element: <ViewBookings />
+            },
+            {
+                path: 'viewPayments',
+                element: <ViewPayments /> 
             }
         ]
     }
