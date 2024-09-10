@@ -4,7 +4,7 @@ import { axiosInstances } from "../config/axiosInstances";
 
 export const ViewAllCars = async() => {
     try{
-        const response = await axiosInstance({
+        const response = await axiosInstances({
           url: "/car/viewallcars",
           method: "GET",
       })
@@ -20,7 +20,7 @@ export const ViewAllCars = async() => {
 
 export const Viewcar = async({ id }) => {
   try {
-    const response = await axiosInstance({
+    const response = await axiosInstances({
       url: `/car/viewcar/${id}`,
       method: "GET"
     })
@@ -33,7 +33,7 @@ export const Viewcar = async({ id }) => {
 
 export const searchCar = async(data) => {
   try {
-    const response = await axiosInstance({
+    const response = await axiosInstances({
       url: `/car/search`,
       params: { name: data.location }, 
       method: "GET",
@@ -56,7 +56,7 @@ export const carAdd = async(data)=>{
           formData.append(key, data[key]);
       }
   });
-      const response = await axiosInstance({
+      const response = await axiosInstances({
           url:"/car/addcar",
           method:"POST",
           data: formData,
@@ -91,7 +91,7 @@ export const carDelete = async({ id }) =>{
 
 export const Updatecar = async (id, formData) => {
   try {
-    const response = await axiosInstance({
+    const response = await axiosInstances({
       url:`/car/updatecar/${id}`, 
       method: "PUT",
       data: formData, 

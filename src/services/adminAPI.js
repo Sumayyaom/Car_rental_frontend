@@ -21,7 +21,7 @@ export const deleteUser = async (userId) => {
   try {
     console.log("Entering try");
     
-    const response = await axiosInstance({
+    const response = await axiosInstances({
       url: `/admin/deleteuser/${userId}`,
       method: "DELETE",
       withCredentials: true
@@ -35,7 +35,7 @@ export const deleteUser = async (userId) => {
 
 export const ViewAllBookings = async() => {
   try{
-      const response = await axiosInstance({
+      const response = await axiosInstances({
         url: "/admin/viewbookings",
         method: "GET",
         withCredentials: true
@@ -51,7 +51,7 @@ export const ViewAllBookings = async() => {
 
 export const deleteBooking = async (bookingId) => {
   try {
-    const response = await axiosInstance({
+    const response = await axiosInstances({
       url: `/admin/deletebooking/${bookingId}`,
       method: "DELETE",
       withCredentials: true
@@ -66,7 +66,7 @@ export const deleteBooking = async (bookingId) => {
 
 export const ViewAllPayments = async() => {
   try{
-      const response = await axiosInstance({
+      const response = await axiosInstances({
         url: "/admin/viewpayments",
         method: "GET",
         withCredentials: true
@@ -82,7 +82,7 @@ export const ViewAllPayments = async() => {
 
 export const deletePayment = async (paymentId) => {
   try {
-    const response = await axiosInstance({
+    const response = await axiosInstances({
       url: `/admin/deletebooking/${paymentId}`,
       method: "DELETE",
       withCredentials: true

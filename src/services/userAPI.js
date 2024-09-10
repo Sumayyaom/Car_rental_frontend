@@ -3,7 +3,7 @@ import { axiosInstances } from "../config/axiosInstances";
 
 export const userLogin = async(data)=>{
     try {
-        const response = await axiosInstance({
+        const response = await axiosInstances({
             url:"/user/login",
             method:"POST",
             data,
@@ -28,7 +28,7 @@ export const userSignup = async(data)=>{
             formData.append(key, data[key]);
         }
     });
-        const response = await axiosInstance({
+        const response = await axiosInstances({
             url:"/user/signup",
             method:"POST",
             data: formData,
@@ -60,7 +60,7 @@ export const userSignup = async(data)=>{
 
 export const Profile = async (req,res,next) => {
     try{
-        const response = await axiosInstance({
+        const response = await axiosInstances({
             url: "/user/profile",
             method: "GET",
             withCredentials: true
@@ -91,7 +91,7 @@ export const Logout = async() => {
 
 export const userDelete = async() =>{
     try {
-        const response = await axiosInstance({
+        const response = await axiosInstances({
             url: "/admin/deleteuser",
             method: "DELETE",
             withCredentials: true
@@ -106,7 +106,7 @@ export const userDelete = async() =>{
 
 export const userUpdate = async(formData) =>{
     try{
-        const response = await axiosInstance({
+        const response = await axiosInstances({
             url: `/user/updateuser`,
             method: "PUT",
             withCredentials: true,
@@ -126,7 +126,7 @@ export const userUpdate = async(formData) =>{
 
 export const BookCar = async(data) =>{
     try{
-        const response = await axiosInstance({
+        const response = await axiosInstances({
             url: `/user/book`,
             method: "POST",
             withCredentials: true,
