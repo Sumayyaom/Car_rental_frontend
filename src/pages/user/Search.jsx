@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { searchCar } from '../../services/carAPI';
-import Cards from '../../components/ui/Cards';
+import SearchCards from '../../components/ui/SearchCards';
 
 export default function Search() {
   const [cars, setCars] = useState([]);
@@ -63,7 +63,7 @@ export default function Search() {
       {cars.length > 0 && (
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6">
           {cars.map((value) => (
-        <Cards key={value._id} cars={value} />
+        <SearchCards key={value._id} cars={value} />
           ))}
         </div>
       )}
