@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ViewAllCars } from '../../services/carAPI';
-import Cards from '../../components/ui/cards.jsx';
+import SearchCards from '../../components/ui/SearchCards';
 
 const Cars = () => {
   const [cars, setCars] = useState([]);
@@ -20,7 +20,7 @@ const Cars = () => {
       {/* Car cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full">
         {cars.map((value) => (
-          <Cards key={value._id} cars={value} />
+          <SearchCards key={value._id} cars={value} />
         ))}
       </div>
     </div>
