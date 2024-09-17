@@ -17,7 +17,6 @@ import EditProfile from "../pages/user/EditProfile";
 import CarDetails from "../pages/user/CarDetails";
 import Cars from "../pages/user/Cars";
 import CarBook from "../pages/user/CarBook";
-import SearchedCars from "../pages/user/SearchedCars";
 import AdminViewCar from "../pages/admin/AdminViewCar";
 import AdminCarDetails from "../pages/admin/AdminCarDetails";
 import ViewUsers from "../pages/admin/ViewUsers";
@@ -26,11 +25,10 @@ import AdminEdit from "../pages/admin/AdminEdit";
 import EditCar from "../pages/admin/EditCar";
 import ViewBookings from "../pages/admin/ViewBookings";
 import ViewPayments from "../pages/admin/ViewPayments";
-import Bookings from "../pages/user/Bookings";
+// import Bookings from "../pages/user/Bookings";
 import AdminHome from "../pages/admin/AdminHome";
 import AdminSearchCar from "../pages/admin/AdminSearchCar";
-
-
+import RootHome from "../pages/root/RootHome";
 
 export const router = createBrowserRouter([
     {
@@ -40,7 +38,7 @@ export const router = createBrowserRouter([
       children: [
         {
             path: "",
-            element: <Home />
+            element: <RootHome />
         },
         {
             path: "about",
@@ -100,14 +98,10 @@ export const router = createBrowserRouter([
                 path: 'carDetails/:id',
                 element: <CarDetails />
             },
-            {
-                path: 'searchedCars',
-                element: <SearchedCars />
-            },
-            {
-                path: 'bookings',
-                element: <Bookings />
-            }
+            // {
+            //     path: 'bookings',
+            //     element: <Bookings />
+            // }
         ]
     },
     {
@@ -133,7 +127,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'search',
-                element: <AdminSearchCar />
+                element: <AdminSearchCar />,
             },
             {
                 path: 'carDetails/:id',

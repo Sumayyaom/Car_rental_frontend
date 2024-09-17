@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function SearchCards({cars}) {
   return (
-    <div className="card card-compact bg-base-100 w-96 shadow-xl mb-6">
+    <div className="card card-compact bg-base-100 w-82 shadow-xl mb-6">
   <figure>
     <img
       src={cars.photo}

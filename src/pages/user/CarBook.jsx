@@ -5,7 +5,7 @@ import { Viewcar } from '../../services/carAPI';
 import { useParams } from 'react-router-dom';
 import { BookCar } from '../../services/userAPI';
 import CheckoutForm from '../../components/ui/CheckoutForm';
-import {loadStripe} from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { axiosInstances } from '../../config/axiosInstances';
 
@@ -14,32 +14,31 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 export default function CarBook() {
 
   const [clientSecret, setClientSecret] = useState('');
-
   const { id } = useParams();
   const [cars, setCars] = useState(null);
- 
   const [pickupDate, setPickupDate] = useState('');
   const [dropoffDate, setDropoffDate] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
   const [diffDays, setDiffDays] = useState(0);
 
-  const userid = Cookies.get("userId");  
-  console.log("userID====>",userid);
-
+  const userid = Cookies.get("userId");
 
   useEffect(() => {
     const fetchCarDetails = async () => {
       const data = await Viewcar({ id });
-      setCars(data.data)
-      console.log("response===>",data.data);
+      setCars(data.data);
     };
     fetchCarDetails();
   }, [id]);
 
-  // Function to calculate total price based on dates
   const calculateTotalPrice = () => {
     const pickup = new Date(pickupDate);
     const dropoff = new Date(dropoffDate);
+
+    if (!pickupDate || !dropoffDate) {
+      toast.error("Please select both pickup and dropoff dates.");
+      return;
+    }
 
     if (pickup >= dropoff) {
       toast.error("Dropoff date should be later than pickup date.");
@@ -55,7 +54,6 @@ export default function CarBook() {
     }
   };
 
-  // Function to handle booking
   const handleBooking = async () => {
     if (!pickupDate || !dropoffDate || diffDays === 0 || totalPrice === 0) {
       toast.error('Please provide valid dates and calculate the price first.');
@@ -64,9 +62,7 @@ export default function CarBook() {
 
     const bookingData = {
       userid: userid,
-      // username: username,
       carid: cars._id,
-      // carname: cars.name,
       pickupdate: pickupDate,
       dropoffdate: dropoffDate,
       totaldays: diffDays,
@@ -75,16 +71,15 @@ export default function CarBook() {
 
     try {
       const response = await BookCar(bookingData);
-      console.log('Booking successful:', response.data);
 
+      // Create payment intent
       const paymentResponse = await axiosInstances.post('/payment/create-checkout-session', { totalPrice });
       setClientSecret(paymentResponse.data.clientSecret);
-
       toast.success('Booking confirmed! Proceed to payment.');
     } catch (error) {
       console.error('Error booking car or creating payment intent:', error);
       toast.error('Booking or payment failed. Please try again.');
-    }      
+    }
   };
 
   // Display a loading message while the car data is being fetched
@@ -93,12 +88,13 @@ export default function CarBook() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white rounded-lg shadow-lg p-6 max-w-4xl w-full">
+    <div className="flex flex-col items-center min-h-screen bg-gray-100">
+      {/* Car details and booking form */}
+      <div className="bg-white rounded-lg shadow-lg p-6 max-w-4xl w-full mt-10">
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/2">
             <img
-              src={cars?.photo || '/placeholder.png'} // Provide a fallback image
+              src={cars?.photo || '/placeholder.png'} 
               alt="Car Image"
               className="rounded-lg object-cover w-full h-64 md:h-auto"
             />
@@ -108,9 +104,8 @@ export default function CarBook() {
             <h1 className="text-2xl font-bold text-gray-800">
               {cars.name}
             </h1>
-            <p className="text-gray-800 mt-4 text-xl font-semibold">${cars?.price} per day</p>
+            <p className="text-gray-800 mt-4 text-xl font-semibold">Rs.{cars?.price} per day</p>
 
-            {/* Booking Form */}
             <div className="mt-6">
               <label className="block text-gray-700">Pickup Date</label>
               <input
@@ -118,7 +113,11 @@ export default function CarBook() {
                 value={pickupDate}
                 onChange={(e) => setPickupDate(e.target.value)}
                 className="border rounded-md px-4 py-2 w-full mt-2"
+                required
               />
+              {pickupDate === '' && (
+                <p className="text-red-500 mt-2">Pickup date is required</p>
+              )}
 
               <label className="block text-gray-700 mt-4">Dropoff Date</label>
               <input
@@ -126,7 +125,11 @@ export default function CarBook() {
                 value={dropoffDate}
                 onChange={(e) => setDropoffDate(e.target.value)}
                 className="border rounded-md px-4 py-2 w-full mt-2"
+                required
               />
+              {dropoffDate === '' && (
+                <p className="text-red-500 mt-2">Dropoff date is required</p>
+              )}
 
               <button
                 onClick={calculateTotalPrice}
@@ -136,7 +139,7 @@ export default function CarBook() {
 
               {totalPrice > 0 && (
                 <div className="mt-4 text-lg font-semibold text-gray-800">
-                  Total Price: ${totalPrice}
+                  Total Price: Rs.{totalPrice}
                 </div>
               )}
 
@@ -150,15 +153,17 @@ export default function CarBook() {
         </div>
       </div>
 
+      {/* Payment form */}
       {clientSecret && (
-        <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <CheckoutForm  clientSecret={clientSecret}/>
-        </Elements>
+        <div className="bg-white flex flex-col rounded-lg shadow-lg p-6 mt-8 w-full max-w-lg mb-10">
+          <h2 className="text-xl font-bold text-center">Payment</h2>
+          <Elements stripe={stripePromise} options={{ clientSecret }}>
+            <CheckoutForm clientSecret={clientSecret} />
+          </Elements>
+        </div>
       )}
-
     </div>
-  )
+  );
 }
-
 
 

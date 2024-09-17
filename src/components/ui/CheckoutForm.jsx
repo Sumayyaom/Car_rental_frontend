@@ -11,7 +11,7 @@ export default function CheckoutForm({ clientSecret, bookingId, userId }) {
     event.preventDefault();
 
     if (!stripe || !elements) {
-      return; // Stripe.js has not yet loaded.
+      return;
     }
 
     const cardNumberElement = elements.getElement(CardNumberElement);
@@ -35,7 +35,7 @@ export default function CheckoutForm({ clientSecret, bookingId, userId }) {
         toast.error(error.message);
       } else if (paymentIntent.status === 'succeeded') {
         toast.success('Payment successful!');
-
+        window.location.reload();
         // Extract receipt URL safely
         // const receiptUrl = paymentIntent.charges?.data[0]?.receipt_url || '';
 

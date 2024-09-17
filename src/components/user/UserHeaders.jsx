@@ -16,7 +16,6 @@ export default function UserHeaders() {
           <Link to="/user/about" className='hover:text-blue-500'>About</Link>
           <Link to="/user/search" className='hover:text-blue-500'>Search</Link>
           <Link to="/user/cars" className='hover:text-blue-500'>Cars</Link>
-          {/* <Link to="/user/bookings/:id" className='hover:text-blue-500'>Bookings</Link> */}
         </nav>
 
         <div className='flex items-center gap-4 sm:gap-8'>

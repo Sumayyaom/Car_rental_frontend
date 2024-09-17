@@ -4,23 +4,26 @@ import Mode from './Mode';
 
 export default function Header() {
   return (
-    <div className='flex items-center justify-between w-full h-32 px-20 shadow-xl'>
-        <div>
-            <h1 className='text-4xl font-bold'>Car Rental</h1>
+    
+    <header className='w-full px-4 py-4 bg-white shadow-xl'>
+      <div className='container mx-auto flex flex-wrap items-center justify-between'>
+        <div className='flex-shrink-0'>
+          <h1 className='text-3xl font-bold sm:text-4xl'>Car Rental</h1>
         </div>
 
-    <nav className='flex gap-10 font-semibold'>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
-    </nav>
+        <nav className='flex flex-col sm:flex-row gap-4 sm:gap-10 font-semibold'>
+          <Link to="/" className='hover:text-blue-500'>Home</Link>
+          <Link to="/about" className='hover:text-blue-500'>About</Link>
+          <Link to="/contact" className='hover:text-blue-500'>Contact</Link>
+        </nav>
 
-    <div className='flex items-center gap-8'>
-        <Mode />
-        <Link to="/signup">
-          <button className="btn btn-primary">Register Now</button>
-        </Link>
-    </div>
-    </div>
+        <div className='flex items-center gap-4 sm:gap-8'>
+          <Mode />
+          <Link to="/signup">
+           <button className="btn btn-primary">Register Now</button>
+         </Link>
+        </div>
+      </div>
+    </header>
   )
 }

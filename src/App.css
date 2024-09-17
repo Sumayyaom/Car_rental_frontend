@@ -92,19 +92,19 @@
 }
 
 .profile-section h3 {
-  font-size: 20px;
-  color: #444;
+  font-size: 24px;
+  color: #181616;
   margin-bottom: 15px;
+  font-weight: bold;
 }
 
-/* Booking History List */
 .booking-list {
   list-style: none;
   padding: 0;
 }
 
 .booking-item {
-  background-color: #fff;
+  background-color: #d2d1c1;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 8px;

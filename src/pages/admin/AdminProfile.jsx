@@ -61,25 +61,7 @@ export default function AdminProfile() {
         </div>
       </div>
 
-      <div className="profile-section">
-        {/* <h3>Booking History</h3> */}
-        {/* {bookings.length > 0 ? (
-          <ul className="booking-list"> */}
-            {/* {bookings.map((booking) => (
-              <li key={booking.id} className="booking-item">
-                <div>Car: {booking.carModel}</div>
-                <div>Date: {new Date(booking.date).toLocaleDateString()}</div>
-                <div>Status: {booking.status}</div>
-              </li>
-            ))} */}
-          {/* </ul> */}
-        {/* ) : (
-          <p>No bookings made yet.</p>
-        )} */}
-      {/* </div>
-
-      <div className="profile-section">
-        <h3>Account Settings</h3> */}
+      <div className="profile-section">      
         <Link to={"/admin/profile/editprofile"}><button className="btn-edit-profile">Edit Profile</button></Link>
         <button className="btn-delete-account" onClick={handleDelete}>Delete Account</button><br />
         <button className="btn-logout" onClick={handleLogout}>Logout</button>

@@ -4,14 +4,18 @@ import toast from 'react-hot-toast';
 
 export default function ViewBookings() {
     const [Bookings, setBookings] = useState([]);
+    let toastFired = false;
 
     useEffect(() => {
       const fetchBookings = async () => {
         const data = await ViewAllBookings();
         if (data.length > 0) {
           setBookings(data);
-          console.log("SetBookings",data)
-          toast.success('Bookings fetched successfully');
+          console.log("SetBookings",data);
+          if (!toastFired) {
+            toast.success('Bookings fetched successfully');
+            toastFired = true;
+          }
         } else {
           toast.error('No Bookings found');
         }
@@ -27,9 +31,9 @@ export default function ViewBookings() {
           // Remove the deleted user from the state
           setBookings((prevUsers) => prevUsers.filter((user) => Bookings._id !== bookingId));
           console.log("response=====>",response);
-          toast.success('User deleted successfully');
+          toast.success('Booking deleted successfully');
         } catch (error) {
-          toast.error('Failed to delete user');
+          toast.error('Failed to delete booking');
           console.error(error);
         }
       }

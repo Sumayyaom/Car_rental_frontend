@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { ViewAllCars } from '../../services/carAPI';
 import AdminCarCards from '../../components/ui/AdminCarCards';
+import toast from 'react-hot-toast';
 
 
 export default function AdminViewCar() {
     const [cars, setCars] = useState([]);
+    let toastFired = false;
 
     useEffect(() => {
       const fetchCars = async () => {
         const data = await ViewAllCars();
-        setCars(data.data)
+        setCars(data.data);
+        if (!toastFired) {
+          toast.success('Cars fetched successfully');
+          toastFired = true;
+        }
       };
       fetchCars();
     }, []);

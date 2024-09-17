@@ -31,7 +31,6 @@ export default function Search() {
 
   return (
     <div>
-      {/* Search Form */}
       <div className="hero bg-base-200 py-20">
         <div className="hero-content flex-col lg:flex-row lg:w-15/15">
           <div className="card bg-base-100 w-full max-w-l shrink-0 shadow-2xl">
@@ -44,10 +43,23 @@ export default function Search() {
                 <input
                   type="text"
                   placeholder="Location"
-                  {...register('location', { required: true })}
+                  {...register('location', {
+                    required: 'Location is required',
+                    minLength: {
+                      value: 2,
+                      message: 'Location must be at least 2 characters long',
+                    },
+                    pattern: {
+                      value: /^[a-zA-Z\s]+$/,
+                      message: 'Location can only contain letters and spaces',
+                    },
+                  })}
                   className="input input-bordered"
-                  required
                 />
+
+                {errors.location && (
+                  <p className="text-red-500 mt-2">{errors.location.message}</p>
+                )}
               </div>
               <div className="form-control mt-6">
                 <button type="submit" className="btn btn-primary">
@@ -63,7 +75,7 @@ export default function Search() {
       {cars.length > 0 && (
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6">
           {cars.map((value) => (
-        <SearchCards key={value._id} cars={value} />
+            <SearchCards key={value._id} cars={value} />
           ))}
         </div>
       )}

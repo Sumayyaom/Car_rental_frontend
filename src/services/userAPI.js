@@ -140,3 +140,19 @@ export const BookCar = async(data) =>{
         toast.error("Error booking car");
     }
 }
+
+export const Booking = async (req,res,next) => {
+    try{
+        const response = await axiosInstances({
+            url: "/user/bookings",
+            method: "GET",
+            withCredentials: true
+        })
+        console.log("Bookings",response);
+        return response?.data;
+    }
+    catch{
+        console.log("Error fetching data");
+        toast.error("Error fetching data");
+    }
+};

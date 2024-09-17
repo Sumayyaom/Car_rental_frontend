@@ -8,7 +8,6 @@ export default function RootLayout() {
   return (
     <div>
         <Header />
-        {/* <HomeBanner /> */}
         <div className='min-h-96'>
           <Outlet />
         </div>

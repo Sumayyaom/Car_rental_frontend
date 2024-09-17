@@ -4,6 +4,7 @@ import { deleteUser, ViewAllUsers } from '../../services/adminAPI';
 
 export default function ViewUsers() {
   const [users, setUsers] = useState([]);
+  let toastFired = false;
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -11,7 +12,10 @@ export default function ViewUsers() {
       if (data.length > 0) {
         setUsers(data);
         console.log("SetUsers",data)
-        toast.success('Users fetched successfully');
+        if (!toastFired) {
+          toast.success('Users fetched successfully');
+          toastFired = true;
+        }
       } else {
         toast.error('No users found');
       }
