@@ -15,7 +15,7 @@ export default function HomeBanner() {
   </div>
   <div id="slide2" className="carousel-item relative w-full">
     <img
-      src="https://onroadz.com/wp-content/uploads/2020/11/Self-Drive-Car-Offers.png"
+      src="https://www.autostrad.com/admin_module/uploads/offer/f4e2551dbe25c33c1a5613c1be2ce0ee.jpg"
       className="w-full" />
     <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
       <a href="#slide1" className="btn btn-circle">❮</a>

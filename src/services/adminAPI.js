@@ -94,3 +94,32 @@ export const deletePayment = async (paymentId) => {
   }
 };
 
+export const ViewAllReviews = async() => {
+  try{
+      const response = await axiosInstances({
+        url: "/admin/viewreviews",
+        method: "GET",
+        withCredentials: true
+    })
+    return response?.data.data;
+    }
+  catch(error){
+    console.error("error");
+    toast.error("Failed to fetch reviews");
+    return null;
+  }
+}
+
+export const deleteReview = async (reviewId) => {
+  try {
+    const response = await axiosInstances({
+      url: `/admin/deletereview/${reviewId}`,
+      method: "DELETE",
+      withCredentials: true
+    });
+    console.log("response1======>",response)
+    return response?.data;
+  } catch (error) {
+    console.error("Error deleting review", error);
+  }
+};

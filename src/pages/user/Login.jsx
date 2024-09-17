@@ -16,7 +16,7 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     try {
-      console.log(data, "=======> data");
+      // console.log(data, "=======> data");
       const response = await userLogin(data);
       console.log(response);
       if (response?.status) {

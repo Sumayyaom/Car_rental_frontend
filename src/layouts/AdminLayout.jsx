@@ -29,10 +29,10 @@ export default function AdminLayout() {
                 <li className="py-2 px-4 hover:bg-gray-700 rounded cursor-pointer">
                   View Bookings
                 </li></Link>
-                {/* <Link to="/admin/viewPayments">
+                <Link to="/admin/review">
                 <li className="py-2 px-4 hover:bg-gray-700 rounded cursor-pointer">
-                  View Payments
-                </li></Link> */}
+                  View Reviews
+                </li></Link>
                 <Link to="/admin/search">
                 <li className="py-2 px-4 hover:bg-gray-700 rounded cursor-pointer">
                   Search

@@ -29,6 +29,8 @@ import ViewPayments from "../pages/admin/ViewPayments";
 import AdminHome from "../pages/admin/AdminHome";
 import AdminSearchCar from "../pages/admin/AdminSearchCar";
 import RootHome from "../pages/root/RootHome";
+import Review from "../pages/user/Review";
+import ViewReviews from "../pages/admin/ViewReviews";
 
 export const router = createBrowserRouter([
     {
@@ -98,10 +100,10 @@ export const router = createBrowserRouter([
                 path: 'carDetails/:id',
                 element: <CarDetails />
             },
-            // {
-            //     path: 'bookings',
-            //     element: <Bookings />
-            // }
+            {
+                path: 'review/:id',
+                element: <Review />
+            }
         ]
     },
     {
@@ -160,6 +162,10 @@ export const router = createBrowserRouter([
             {
                 path: 'viewPayments',
                 element: <ViewPayments /> 
+            },
+            {
+                path: "review",
+                element: <ViewReviews />
             }
         ]
     }

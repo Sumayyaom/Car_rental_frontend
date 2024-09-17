@@ -9,7 +9,6 @@ export const userLogin = async(data)=>{
             data,
             withCredentials: true,
           });
-        //   console.log("Axios Base URL:", axiosInstance.defaults.baseURL);
           return response?.data;
     } catch (error) {
         console.log(error);
@@ -149,6 +148,23 @@ export const Booking = async (req,res,next) => {
             withCredentials: true
         })
         console.log("Bookings",response);
+        return response?.data;
+    }
+    catch{
+        console.log("Error fetching data");
+        toast.error("Error fetching data");
+    }
+};
+
+export const addReview = async (reviewData) => {
+    try{
+        const response = await axiosInstances({
+            url: "/user/review",
+            method: "POST",
+            withCredentials: true,
+            data: reviewData
+        })
+        console.log("Review",response);
         return response?.data;
     }
     catch{
