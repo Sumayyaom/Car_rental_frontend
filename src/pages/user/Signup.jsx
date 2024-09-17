@@ -1,10 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { userSignup } from '../../services/userAPI';
 
 export default function Signup() {
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -22,6 +24,7 @@ export default function Signup() {
       const response = await userSignup(data);
       console.log(response);
       toast.success('Registered successfully');
+      navigate('/login');
     } catch (error) {
       console.log(error);
       toast.error('User registration failed');
