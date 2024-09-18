@@ -12,7 +12,6 @@ export const userLogin = async(data)=>{
           return response?.data;
     } catch (error) {
         console.log(error);
-        toast.error('Login Failed');
     }
 };
 

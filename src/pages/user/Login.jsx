@@ -28,11 +28,10 @@ export default function Login() {
           navigate('/user/home');
         }
       } else {
-        toast.error('Login Failed');
+        toast.error('Wrong username or password');
       }
     } catch (error) {
       console.log(error);
-      toast.error('Login Failed');
     }
   }
 
