@@ -22,7 +22,7 @@ export default function AdminProfile() {
 
     const handleDelete = async() => {
       try{
-        const response = await userDelete();
+        const response = await userDelete(user._id);
         console.log(response);
         toast.success('User deleted successfully');
         navigate("/");

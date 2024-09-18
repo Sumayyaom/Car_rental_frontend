@@ -19,8 +19,7 @@ export const ViewAllUsers = async() => {
 
 export const deleteUser = async (userId) => {
   try {
-    console.log("Entering try");
-    
+    console.log("Entering try",userId);
     const response = await axiosInstances({
       url: `/admin/deleteuser/${userId}`,
       method: "DELETE",

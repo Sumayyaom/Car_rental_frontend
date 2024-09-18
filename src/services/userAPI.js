@@ -88,15 +88,14 @@ export const Logout = async() => {
     }
 };
 
-export const userDelete = async() =>{
+export const userDelete = async(userId) =>{
     try {
         const response = await axiosInstances({
-            url: "/admin/deleteuser",
+            url: `/admin/deleteuser/${userId}`,
             method: "DELETE",
             withCredentials: true
         });
         return response?.data;
-        toast.error("Error while deleting user");
     } catch (error) {
         toast.error("Error while deleting user");
         console.log(error);

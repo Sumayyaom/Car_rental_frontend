@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { addReview, Booking, Logout, Profile, userDelete } from '../../services/userAPI';
+import { Booking, Logout, Profile, userDelete } from '../../services/userAPI';
 import toast from 'react-hot-toast';
 import { deleteBooking } from '../../services/adminAPI'; 
 import dayjs from 'dayjs'; 
@@ -34,6 +34,17 @@ export default function UserProfile() {
     }
   };
 
+  const handleDelete = async() => {
+    try{
+      const response = await userDelete(user._id);
+      console.log(response);
+      toast.success('User deleted successfully');
+      navigate("/");
+    }catch(error){
+      console.log(error);
+      toast.error('Error Deleting user');
+    }
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -115,7 +126,7 @@ export default function UserProfile() {
         <Link to={'/user/profile/editprofile'}>
           <button className="btn-edit-profile">Edit Profile</button>
         </Link>
-        <button className="btn-delete-account" onClick={handleDeleteBooking}>
+        <button className="btn-delete-account" onClick={handleDelete}>
           Delete Account
         </button>
         <br />

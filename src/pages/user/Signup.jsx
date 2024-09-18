@@ -20,6 +20,7 @@ export default function Signup() {
 
   const onSubmit = async (data) => {
     try {
+      data.role = "user";
       console.log(data, "=======> data");
       const response = await userSignup(data);
       console.log(response);
@@ -101,7 +102,7 @@ export default function Signup() {
               {errors.address && <p className="text-red-500">{errors.address.message}</p>}
             </div>
 
-            <div className="form-control">
+            {/* <div className="form-control">
               <label className="label">
                 <span className="label-text">Role</span>
               </label>
@@ -109,7 +110,7 @@ export default function Signup() {
                   validate: (value) => value === 'admin' || value === 'user' || 'Role must be either "admin" or "user"',
               })} className="input input-bordered"/>
                 {errors.role && <p className="text-red-500">{errors.role.message}</p>}
-            </div>
+            </div> */}
 
             <div className="form-control">
               <label className="label">
