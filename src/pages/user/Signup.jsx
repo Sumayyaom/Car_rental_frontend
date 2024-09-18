@@ -1,35 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { userSignup } from '../../services/userAPI';
+import eyeImage from '../../assets/eye.png';  
+import eyeSlashImage from '../../assets/eye-slash.png'; 
 
 export default function Signup() {
-
   const navigate = useNavigate();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm();
-
-  // Watch the password field to validate confirm password
+  const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const password = watch('password');
+
+  // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
 
   const onSubmit = async (data) => {
     try {
-      data.role = "user";
-      console.log(data, "=======> data");
-      const response = await userSignup(data);
-      console.log(response);
-      toast.success('Registered successfully');
-      navigate('/login');
-    } catch (error) {
-      console.log(error);
-      toast.error('User registration failed');
-    }
+              data.role = "user";
+              console.log(data, "=======> data");
+              const response = await userSignup(data);
+              console.log(response);
+              toast.success('Registered successfully');
+              navigate('/login');
+            } catch (error) {
+              console.log(error);
+              toast.error('User registration failed');
+            }
   };
 
   return (
@@ -37,7 +37,6 @@ export default function Signup() {
       <div className="hero-content flex-col lg:flex-row lg:w-6/12">
         <div className="card bg-base-100 w-full max-w-l shrink-0 shadow-2xl">
           <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
-  
             <div className="form-control">
               <h1 className="text-3xl font-bold">Sign Up</h1>
               <label className="label">
@@ -102,42 +101,50 @@ export default function Signup() {
               {errors.address && <p className="text-red-500">{errors.address.message}</p>}
             </div>
 
-            {/* <div className="form-control">
-              <label className="label">
-                <span className="label-text">Role</span>
-              </label>
-              <input type="text" placeholder="role" {...register('role', { required: 'Role is required',
-                  validate: (value) => value === 'admin' || value === 'user' || 'Role must be either "admin" or "user"',
-              })} className="input input-bordered"/>
-                {errors.role && <p className="text-red-500">{errors.role.message}</p>}
-            </div> */}
-
-            <div className="form-control">
+            <div className="form-control relative">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <input
-                type="password"
-                placeholder="password"
-                {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Password must be at least 6 characters' } })}
-                className="input input-bordered"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="password"
+                  {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Password must be at least 6 characters' } })}
+                  className="input input-bordered w-full pr-12"
+                />
+                <img
+                  src={showPassword ? eyeSlashImage : eyeImage}
+                  alt="Toggle Password Visibility"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                  onClick={togglePasswordVisibility}
+                  style={{ width: '24px', height: '24px' }}  
+                />
+              </div>
               {errors.password && <p className="text-red-500">{errors.password.message}</p>}
             </div>
 
-            <div className="form-control">
+            <div className="form-control relative">
               <label className="label">
                 <span className="label-text">Confirm Password</span>
               </label>
-              <input
-                type="password"
-                placeholder="confirm password"
-                {...register('confirmPassword', {
-                  required: 'Please confirm your password',
-                  validate: (value) => value === password || 'Passwords do not match',
-                })}
-                className="input input-bordered"
-              />
+              <div className="relative">
+                <input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  placeholder="confirm password"
+                  {...register('confirmPassword', {
+                    required: 'Please confirm your password',
+                    validate: (value) => value === password || 'Passwords do not match',
+                  })}
+                  className="input input-bordered w-full pr-12"
+                />
+                <img
+                  src={showConfirmPassword ? eyeSlashImage : eyeImage}
+                  alt="Toggle Confirm Password Visibility"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                  onClick={toggleConfirmPasswordVisibility}
+                  style={{ width: '24px', height: '24px' }}  
+                />
+              </div>
               {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
             </div>
 
@@ -159,7 +166,6 @@ export default function Signup() {
               {errors.profilepicture && <p className="text-red-500">{errors.profilepicture.message}</p>}
             </div>
 
-            {/* Existing User Link */}
             <div>
               <label className="label">
                 <Link to={'/login'}>Existing User?</Link>
@@ -175,3 +181,4 @@ export default function Signup() {
     </div>
   );
 }
+
