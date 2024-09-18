@@ -26,7 +26,7 @@ export default function EditProfile() {
         setValue("email", response.data.email);
         setValue("phone", response.data.phone);
         setValue("address", response.data.address);
-        setValue("role", response.data.role);
+        // setValue("role", response.data.role);
         setValue("profilepicture", response.data.profilepicture);
 
       } catch (error) {
@@ -45,7 +45,7 @@ const onUserUpdate = async (data) => {
     if (data.email !== user.email) formData.append("email", data.email);
     if (data.phone !== user.phone) formData.append("phone", data.phone);
     if (data.address !== user.address) formData.append("address", data.address);
-    if (data.role !== user.role) formData.append("role", data.role);
+    if (data.role !== user.role) formData.append("role", user.role);
 
     // Handle file input (if user changes profile picture)
     if (data.profilepicture instanceof File) {
@@ -96,12 +96,12 @@ const onUserUpdate = async (data) => {
              </label>
              <textarea placeholder="address" {...register("address")} className="textarea textarea-bordered" ></textarea>
              </div>
-             <div className="form-control">
+             {/* <div className="form-control">
              <label className="label">
                <span className="label-text">Role</span>
              </label>
              <input type="text" placeholder="role" {...register("role")} className="input input-bordered" />
-             </div>
+             </div> */}
              <div className="form-control">
              <label className="label">
                <span className="label-text">Profile Picture</span>
