@@ -13,20 +13,15 @@ export default function AddCar() {
 
   const onSubmit = async (data) => {
     try {
-      const formData = new FormData();
-      for (const key in data) {
-        formData.append(key, data[key]);
-      }
-
-      console.log(data, "=======> data");
-      const response = await carAdd(formData);
-      console.log(response);
-      toast.success('Car Registered Successfully');
-      reset(); 
-    } catch (error) {
-      console.log(error);
-      toast.error('Car Registration Failed');
-    }
+              console.log(data, "=======> data");
+              const response = await carAdd(data);
+              console.log(response);
+              toast.success('Car Registered successfully');
+              reset();
+            } catch (error) {
+              console.log(error);
+              toast.error('car registration failed');
+            }
   };
 
   return (

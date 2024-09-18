@@ -24,7 +24,7 @@ export default function AdminCarDetails() {
         Navigate("/admin/viewCars");
       }catch(error){
         console.log(error);
-        toast.error('Car Deleting user');
+        toast.error('Error deleting car');
       }
     };
 

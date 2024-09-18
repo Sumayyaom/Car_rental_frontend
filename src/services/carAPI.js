@@ -45,6 +45,34 @@ export const searchCar = async(data) => {
   }
 }
 
+// export const carAdd = async(data)=>{
+//   try {
+//       // Create a FormData object to handle file uploads
+//       const formData = new FormData();
+//       Object.keys(data).forEach((key) => {
+//       if (key === 'photo') {
+//           formData.append(key, data[key][0]); // Access the file object in the array
+//       } else {
+//           formData.append(key, data[key]);
+//       }
+//   });
+//       const response = await axiosInstances({
+//           url:"/car/addcar",
+//           method:"POST",
+//           data: formData,
+//           withCredentials: true,
+//           headers: {
+//               'Content-Type': 'multipart/form-data',
+//             },
+//         });
+//         return response?.data;
+        
+//   } catch (error) {
+//       console.log(error);
+      
+//   }
+// };
+
 export const carAdd = async(data)=>{
   try {
       // Create a FormData object to handle file uploads
@@ -84,7 +112,6 @@ export const carDelete = async({ id }) =>{
       });
       return response?.data;
   } catch (error) {
-      toast.error("Error while deleting user");
       console.log(error);
   }
 }

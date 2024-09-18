@@ -52,54 +52,13 @@ export default function EditCar() {
     }
 
       const response = await Updatecar(id, formData); 
-      console.log("Updated car details===========>",response);
       toast.success('Car updated successfully');
+      console.log("Updated car details===========>",response);
     } catch (error) {
       console.log(error);
       toast.error('Car updation failed');
     }
   };
-
-  // const onCarUpdate = async (data) => {
-  //   try {
-  //     const formData = new FormData();
-  
-  //     // // Only append the fields that are changed
-  //     // if (data.name !== car.name) formData.append("name", data.name);
-  //     // if (data.modelno !== car.modelno) formData.append("modelno", data.modelno);
-  //     // if (data.brand !== car.brand) formData.append("brand", data.brand);
-  //     // if (data.price !== car.price) formData.append("price", data.price);
-  //     // if (data.fueltype !== car.fueltype) formData.append("fueltype", data.fueltype);
-  //     // if (data.transmission !== car.transmission) formData.append("transmission", data.transmission);
-  //     // if (data.location !== car.location) formData.append("location", data.location);
-
-  //     formData.append("name", data.name);
-  //   formData.append("modelno", data.modelno);
-  //   formData.append("brand", data.brand);
-  //   formData.append("price", data.price);
-  //   formData.append("fueltype", data.fueltype);
-  //   formData.append("transmission", data.transmission);
-  //   formData.append("location", data.location);
-  
-  
-  //     // Handle file input (if user changes profile picture)
-  //     if (data.photo instanceof File) {
-  //       formData.append("photo", data.photo[0]);
-  //     }
-  
-  //     // Debugging
-  //     for (const pair of formData.entries()) {
-  //       console.log(pair[0], pair[1]);
-  //     }
-  
-  //     // Call the update function
-  //     await Updatecar(id, formData);  
-  //     toast.success('Profile updated successfully');
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error('Profile update failed');
-  //   }
-  // };
 
   if (!car) return <p>Loading...</p>;
 
