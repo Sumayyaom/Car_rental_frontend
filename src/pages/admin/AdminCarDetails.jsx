@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Navigate, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { carDelete, Viewcar } from '../../services/carAPI';
 import toast from 'react-hot-toast';
 
 export default function AdminCarDetails() {
+
+  const navigate = useNavigate();
     const [cars, setCars] = useState([]);  
     const { id } = useParams();
   
@@ -21,10 +23,9 @@ export default function AdminCarDetails() {
         const response = await carDelete({ id });
         console.log(response);
         toast.success('Car deleted successfully');
-        Navigate("/admin/viewCars");
+        navigate("/admin/viewCars");
       }catch(error){
         console.log(error);
-        toast.error('Error deleting car');
       }
     };
 
