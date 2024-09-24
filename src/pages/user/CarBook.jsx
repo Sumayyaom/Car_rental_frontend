@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import toast from 'react-hot-toast';
 import { Viewcar } from '../../services/carAPI';
 import { useParams } from 'react-router-dom';
-import { BookCar } from '../../services/userAPI';
+import { BookCar, Profile } from '../../services/userAPI';
 import CheckoutForm from '../../components/ui/CheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -20,17 +20,27 @@ export default function CarBook() {
   const [dropoffDate, setDropoffDate] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
   const [diffDays, setDiffDays] = useState(0);
+  const [user,setUser] = useState(null);
 
-  const userid = Cookies.get("userId");
-  console.log("id==>",userid);
+  // const userid = Cookies.get("userId");
+  // console.log("id==>",userid);
 
   useEffect(() => {
     const fetchCarDetails = async () => {
       const data = await Viewcar({ id });
       setCars(data.data);
     };
+    const fetchProfile = async () => {
+      try {
+        const response = await Profile();
+        setUser(response.data);
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }}
     fetchCarDetails();
+    fetchProfile();
   }, [id]);
+
 
   const calculateTotalPrice = () => {
     const pickup = new Date(pickupDate);
@@ -62,7 +72,7 @@ export default function CarBook() {
     }
 
     const bookingData = {
-      userid: userid,
+      userid: user._id,
       carid: cars._id,
       pickupdate: pickupDate,
       dropoffdate: dropoffDate,
