@@ -18,22 +18,50 @@ export default function Signup() {
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
 
+  // const onSubmit = async (data) => {
+  //   try {
+  //             data.role = "user";
+  //             console.log(data, "=======> data");
+  //             const response = await userSignup(data);
+  //             console.log("Response:",response);
+  //             if(response.success){
+  //               toast.success('Registered successfully');
+  //             navigate('/login');
+  //             }
+  //           } catch (error) {
+  //             console.log(error);
+  //             toast.error('User registration failed');
+  //           }
+  // };
   const onSubmit = async (data) => {
     try {
-              data.role = "user";
-              console.log(data, "=======> data");
-              const response = await userSignup(data);
-              console.log("Response:",response);
-              if(response.success){
-                toast.success('Registered successfully');
-              navigate('/login');
-              }
-            } catch (error) {
-              console.log(error);
-              toast.error('User registration failed');
-            }
+      data.role = "user";
+      const response = await userSignup(data);
+      console.log("Response:",response)
+  
+      if (response.success) {
+        toast.success('Registered successfully');
+        navigate('/login');
+      }
+    } catch (error) {
+      console.log('Error:', error); 
+      if (error.response) {
+        if (error.status == 400) {
+          // Email is already registered
+          toast.error(error.response.data.message);
+        } else {
+          // Other errors like server or validation errors
+          toast.error('User registration failed');
+        }
+      } else {
+        // Handle errors without a response (e.g., network errors)
+        toast.error("An undefined Error occured");
+      }
+    }
   };
   
+  
+
   return (
     <div className="hero bg-base-200 py-20">
       <div className="hero-content flex-col lg:flex-row lg:w-6/12">
