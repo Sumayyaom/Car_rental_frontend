@@ -82,10 +82,6 @@ export default function Login() {
                 />
               </div>
               {errors.password && <p className="text-red-500">{errors.password.message}</p>}
-
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-              </label>
               <label className="label">
                 <Link to="/signup">New User?</Link>
               </label>
