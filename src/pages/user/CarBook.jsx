@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Cookies from "js-cookie"; 
+// import Cookies from "js-cookie"; 
 import toast from 'react-hot-toast';
 import { Viewcar } from '../../services/carAPI';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { BookCar, Profile } from '../../services/userAPI';
 import CheckoutForm from '../../components/ui/CheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { axiosInstances } from '../../config/axiosInstances';
+import { Navigate } from 'react-router-dom';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -21,6 +22,8 @@ export default function CarBook() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [diffDays, setDiffDays] = useState(0);
   const [user,setUser] = useState(null);
+
+  
 
   // const userid = Cookies.get("userId");
   // console.log("id==>",userid);

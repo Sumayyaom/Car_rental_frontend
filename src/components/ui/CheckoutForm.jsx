@@ -1,11 +1,14 @@
 import { CardNumberElement, CardExpiryElement, CardCvcElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+
 
 
 export default function CheckoutForm({ clientSecret, bookingId, userId }) {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,7 +38,8 @@ export default function CheckoutForm({ clientSecret, bookingId, userId }) {
         toast.error(error.message);
       } else if (paymentIntent.status === 'succeeded') {
         toast.success('Payment successful!');
-        window.location.reload();
+        navigate('/user/Success');
+        // window.location.reload();
         // Extract receipt URL safely
         // const receiptUrl = paymentIntent.charges?.data[0]?.receipt_url || '';
 

@@ -31,6 +31,7 @@ import AdminSearchCar from "../pages/admin/AdminSearchCar";
 import RootHome from "../pages/root/RootHome";
 import Review from "../pages/user/Review";
 import ViewReviews from "../pages/admin/ViewReviews";
+import SuccessPay from "../pages/user/SuccessPay";
 
 export const router = createBrowserRouter([
     {
@@ -103,6 +104,10 @@ export const router = createBrowserRouter([
             {
                 path: 'review/:id',
                 element: <Review />
+            },
+            {
+                path: 'Success',
+                element: <SuccessPay />
             }
         ]
     },
