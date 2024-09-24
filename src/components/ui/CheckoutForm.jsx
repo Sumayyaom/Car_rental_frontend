@@ -37,7 +37,7 @@ export default function CheckoutForm({ clientSecret, bookingId, userId }) {
       if (error) {
         toast.error(error.message);
       } else if (paymentIntent.status === 'succeeded') {
-        toast.success('Payment successful!');
+       toast.success('Payment successful!');
         navigate('/user/Success');
         // window.location.reload();
         // Extract receipt URL safely
