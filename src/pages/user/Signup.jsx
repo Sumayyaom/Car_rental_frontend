@@ -23,15 +23,17 @@ export default function Signup() {
               data.role = "user";
               console.log(data, "=======> data");
               const response = await userSignup(data);
-              console.log(response);
-              toast.success('Registered successfully');
+              console.log("Response:",response);
+              if(response.success){
+                toast.success('Registered successfully');
               navigate('/login');
+              }
             } catch (error) {
               console.log(error);
               toast.error('User registration failed');
             }
   };
-
+  
   return (
     <div className="hero bg-base-200 py-20">
       <div className="hero-content flex-col lg:flex-row lg:w-6/12">
