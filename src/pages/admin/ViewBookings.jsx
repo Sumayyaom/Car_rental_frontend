@@ -51,6 +51,7 @@ export default function ViewBookings() {
               <th>Drop off time</th>
               <th>Days</th>
               <th>Amount</th>
+              <th>Payment Status</th>
             </tr>
           </thead>
           <tbody>
@@ -80,6 +81,7 @@ export default function ViewBookings() {
                 <td>{Booking.dropoffdate}</td>
                 <td>{Booking.totaldays}</td>
                 <td>{Booking.totalprice}</td>
+                <td>{Booking.paymentstatus}</td>
                 <td>
                 <button className="btn btn-error" onClick={() => handleDeleteBooking(Booking._id)}>Delete</button>
                 </td>

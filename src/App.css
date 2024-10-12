@@ -125,6 +125,15 @@
   transition: background-color 0.3s ease;
 }
 
+.btn-paynow {
+  background-color: #1959f0;
+  border-radius: 30px;
+  padding: 10px 12px;
+  color: white;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
 .btn-edit-profile:hover {
   background-color: #45a049;
 }

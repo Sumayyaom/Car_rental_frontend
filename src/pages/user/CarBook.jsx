@@ -21,6 +21,7 @@ export default function CarBook() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [diffDays, setDiffDays] = useState(0);
   const [user,setUser] = useState(null);
+  const [bookingId, setBookingId] = useState(null);
 
 
   // const userid = Cookies.get("userId");
@@ -72,6 +73,8 @@ export default function CarBook() {
       return;
     }
 
+    let paymentstatus = "Pending";
+
     const bookingData = {
       userid: user._id,
       carid: cars._id,
@@ -79,10 +82,15 @@ export default function CarBook() {
       dropoffdate: dropoffDate,
       totaldays: diffDays,
       totalprice: totalPrice,
+      paymentstatus : paymentstatus,
     };
 
     try {
       const response = await BookCar(bookingData);
+      console.log("Booking response====>", response)
+      const bookingId = response.bookingId;
+      console.log("Booking Id====>", bookingId )
+      setBookingId(bookingId);
 
       // Create payment intent
       const paymentResponse = await axiosInstances.post('/payment/create-checkout-session', { totalPrice });
@@ -175,7 +183,7 @@ export default function CarBook() {
         <div className="bg-white flex flex-col rounded-lg shadow-lg p-6 mt-8 w-full max-w-lg mb-10">
           <h2 className="text-xl font-bold text-center">Payment</h2>
           <Elements stripe={stripePromise} options={{ clientSecret }}>
-            <CheckoutForm clientSecret={clientSecret} />
+            <CheckoutForm clientSecret={clientSecret} bookingId={bookingId}/>
           </Elements>
         </div>
       )}

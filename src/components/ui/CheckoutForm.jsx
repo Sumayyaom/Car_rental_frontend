@@ -2,6 +2,7 @@ import { CardNumberElement, CardExpiryElement, CardCvcElement, useElements, useS
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { axiosInstances } from '../../config/axiosInstances';
 
 
 
@@ -11,6 +12,7 @@ export default function CheckoutForm({ clientSecret, bookingId, userId }) {
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
+    console.log("Booking ID: ", bookingId);
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -18,8 +20,8 @@ export default function CheckoutForm({ clientSecret, bookingId, userId }) {
     }
 
     const cardNumberElement = elements.getElement(CardNumberElement);
-    const cardExpiryElement = elements.getElement(CardExpiryElement);
-    const cardCvcElement = elements.getElement(CardCvcElement);
+    // const cardExpiryElement = elements.getElement(CardExpiryElement);
+    // const cardCvcElement = elements.getElement(CardCvcElement);
 
     try {
       const { error, paymentIntent } = await stripe.confirmCardPayment(
@@ -33,10 +35,25 @@ export default function CheckoutForm({ clientSecret, bookingId, userId }) {
       );
       console.log(paymentIntent.id);
       const transactionID = paymentIntent.id;
+      const paymentstatus = 'Completed';
       console.log(transactionID);
       if (error) {
         toast.error(error.message);
       } else if (paymentIntent.status === 'succeeded') {
+        
+        try {
+          await axiosInstances.post('/user/update-payment-status', {
+            bookingId,
+            paymentstatus
+          });
+
+          toast.success('Payment status updated in booking!');
+          navigate('/user/Success');
+        } catch (err) {
+          console.error('Error updating payment status:', err);
+          toast.error('Failed to update payment status. Please try again.');
+        }
+
        toast.success('Payment successful!');
         navigate('/user/Success');
         // window.location.reload();
