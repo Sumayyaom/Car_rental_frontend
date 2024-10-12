@@ -14,7 +14,7 @@ export default function AdminHeader() {
 
       <nav className='flex flex-col sm:flex-row gap-4 sm:gap-10 font-semibold'>
       <Link to="/admin/home">Home</Link>
-        <Link to="/admin/deleteCar/:id">DeleteCar</Link>
+        {/* <Link to="/admin/deleteCar/:id">DeleteCar</Link> */}
         <Link to="/admin/search">Search</Link>
       </nav>
 
